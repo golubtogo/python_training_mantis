@@ -12,7 +12,8 @@ class ProjectHelper:
         wd = self.app.wd
         if not (wd.current_url.endswith("/manage_proj_page.php") and
                 len(wd.find_elements_by_xpath("//button[@type='submit']")) > 0):
-            wd.get("http://localhost/mantisbt-2.25.2/manage_proj_page.php")
+            wd.find_element_by_xpath("//span[contains(text(),'Управление')]").click()
+            wd.find_element_by_xpath("//a[contains(text(),'Управление проектами')]").click()
 
     def create_project(self, project):
         wd = self.app.wd
@@ -89,6 +90,14 @@ class ProjectHelper:
     def delete_project(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@value='Удалить проект']").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_projects_page()
+        list = wd.find_elements_by_css_selector("div.col-md-12>div.widget-box div.table-responsive tbody tr")
+        return len(list)
+
+    user_cache = None
 
 
 
