@@ -17,7 +17,7 @@ class SessionHelper:
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='navbar-container']/div[2]/ul/li[3]/a/i[2]").click()
-        wd.find_element_by_link_text("Выход").click()
+        wd.find_element_by_link_text("Logout").click()
 
     def ensure_logout(self):
         wd = self.app.wd
@@ -26,7 +26,7 @@ class SessionHelper:
 
     def is_logged_in(self):
         wd = self.app.wd
-        return len(wd.find_elements_by_link_text("Создать задачу")) > 0
+        return len(wd.find_elements_by_link_text("Report Issue")) > 0
 
     def is_logged_in_as(self, username):
         wd = self.app.wd

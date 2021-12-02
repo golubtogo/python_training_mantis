@@ -1,4 +1,5 @@
 import re
+from email.header import  make_header, decode_header
 
 
 class SignupHelper:
@@ -18,8 +19,8 @@ class SignupHelper:
         wd.get(url)
         wd.find_element_by_name("password").send_keys(password)
         wd.find_element_by_name("password_confirm").send_keys(password)
-        wd.find_element_by_css_selector('input[value="Update User"]').click()
+        wd.find_element_by_css_selector('button[type="submit"]').click()
 
     def extract_confirmation_url(self, text):
-        return re.search("http://.*$", text, re.MULTILINE).group(0)
+        return re.search("http://[a-zA-Z\0-9.=/?&_]+", str(text)).group(0)
     

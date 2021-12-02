@@ -9,7 +9,7 @@ class MailHelper:
 
     def get_mail(self, username, password, subject):
         for i in range(5):
-            pop = poplib.POP3(self.app.config['james'], ['host'])
+            pop = poplib.POP3(self.app.config['james']['host'])
             pop.user(username)
             pop.pass_(password)
             num = pop.stat()[0]
@@ -18,10 +18,11 @@ class MailHelper:
                     msglines = pop.retr(n+1)[1]
                     msgtext = "\n".join(map(lambda x: x.decode('utf-8'), msglines))
                     msg = email.message_from_string(msgtext)
-                    if msg.get("Subject") == subject:
-                        pop.dele(n+1)
-                        pop.close()
-                        return msg.get_payload()
+                    # if 'MantisBT' in str(email.header.make_header(email.header.decode_header(msg.get("Subject")))):
+#                    if msg.get("Subject") == subject:
+                    pop.dele(n+1)
+                    pop.close()
+                    return msg.get_payload(decode=True)
             pop.close()
-            time.sleep(3)
+            time.sleep(10)
         return None

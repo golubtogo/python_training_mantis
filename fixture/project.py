@@ -12,8 +12,8 @@ class ProjectHelper:
         wd = self.app.wd
         if not (wd.current_url.endswith("/manage_proj_page.php") and
                 len(wd.find_elements_by_xpath("//button[@type='submit']")) > 0):
-            wd.find_element_by_xpath("//span[contains(text(),'Управление')]").click()
-            wd.find_element_by_xpath("//a[contains(text(),'Управление проектами')]").click()
+            wd.find_element_by_xpath("//span[contains(text(),'Manage')]").click()
+            wd.find_element_by_xpath("//a[contains(text(),'Manage Projects')]").click()
 
     def create_project(self, project):
         wd = self.app.wd
@@ -89,7 +89,7 @@ class ProjectHelper:
 
     def delete_project(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//input[@value='Удалить проект']").click()
+        wd.find_element_by_xpath("//input[@value='Delete Project']").click()
 
     def count(self):
         wd = self.app.wd

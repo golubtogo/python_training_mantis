@@ -4,13 +4,13 @@ from fixture.project import Project
 
 
 def random_status():
-    status_list = ["в разработке", "выпущен", "стабильный", "устарел"]
+    status_list = ["development", "release", "stable", "obsolete"]
     status = random.choice(status_list)
     return status
 
 
 def random_view_state():
-    view_state_list = ["публичный", "приватный"]
+    view_state_list = ["public", "private"]
     view_state = random.choice(view_state_list)
     return view_state
 
