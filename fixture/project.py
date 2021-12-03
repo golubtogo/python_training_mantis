@@ -43,9 +43,6 @@ class ProjectHelper:
             wd.find_element_by_name("status").click()
             Select(wd.find_element_by_name("status")).select_by_visible_text(project.status)
 
-        # if not project.inherit_global:
-        #     wd.find_element_by_css_selector("span.lbl").click()
-
         if project.view_state:
             wd.find_element_by_name("view_state").click()
             Select(wd.find_element_by_name("view_state")).select_by_visible_text(project.view_state)
